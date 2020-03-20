@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using COVID19Alert.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +22,7 @@ namespace COVID19Alert.Controllers
         // GET: RegisteredUsers
         public ActionResult Index()
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View();
         }
 
