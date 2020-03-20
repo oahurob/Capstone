@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using COVID19Alert.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,12 @@ namespace COVID19Alert.Controllers
     [Authorize(Roles = "RegisteredUser")]
     public class RegisteredUsersController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public RegisteredUsersController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: RegisteredUsers
         public ActionResult Index()
         {
