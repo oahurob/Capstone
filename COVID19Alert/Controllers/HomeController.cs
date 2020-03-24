@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using COVID19Alert.Models;
+using System.Security.Claims;
 
 namespace COVID19Alert.Controllers
 {
@@ -20,6 +21,15 @@ namespace COVID19Alert.Controllers
 
         public IActionResult Index()
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Redirect("Identity/Account/Login");
+            }
+            if (User.IsInRole("RegisteredUser"))
+            {
+                return RedirectToAction("Index", "RegisteredUsers");
+            }
             return View();
         }
 

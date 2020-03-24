@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace COVID19Alert.Models
 {
-    public class RegisteredUsersViewModel
+    public class RegisteredUserViewModel
     {
-        public Age Age { get; set; }
-        public Address Address { get; set; }
-        public HouseHold HouseHold { get; set; }
+        public MedicalHotline MedicalHotline { get; set; }
         public RegisteredUser RegisteredUser { get; set; }
     }
 }

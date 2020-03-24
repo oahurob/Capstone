@@ -21,17 +21,9 @@ namespace COVID19Alert.ActionFilter
             var controller = context.RouteData.Values["controller"];
             if (controller.Equals("Home"))
             {
-                if (_claimsprincipal.IsInRole("Admin"))
-                {
-                    context.Result = new RedirectToActionResult("Index", "Home", null);
-                }
                 if (_claimsprincipal.IsInRole("RegisteredUser"))
                 {
-                    context.Result = new RedirectToActionResult("Index", "Home", null);
-                }
-                if (_claimsprincipal.IsInRole("MedicalHotline"))
-                {
-                    context.Result = new RedirectToActionResult("Index", "Home", null);
+                    context.Result = new RedirectToActionResult("Index", "RegisteredUsers", null);
                 }
             }
         }
