@@ -40,7 +40,7 @@ namespace COVID19Alert.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = new RegisteredUserViewModel();
-            var regUser = _context.RegisteredUsers.Include(r => r.HouseHold).FirstOrDefault(r => r.Id == id);
+            var regUser = _context.RegisteredUsers.Include(r => r.HouseHold).Include(r => r.HouseHold.Address).FirstOrDefault(r => r.Id == id);
             viewModel.RegisteredUser = regUser;
             return View(viewModel);
         }
@@ -68,7 +68,7 @@ namespace COVID19Alert.Controllers
         public ActionResult Edit(int id)
         {
             var viewModel = new RegisteredUserViewModel();
-            var regUser = _context.RegisteredUsers.Include(r => r.HouseHold).FirstOrDefault(r => r.Id == id);
+            var regUser = _context.RegisteredUsers.Include(r => r.HouseHold).Include(r => r.HouseHold.Address).FirstOrDefault(r => r.Id == id);
             viewModel.RegisteredUser = regUser;
             return View(viewModel);
         }
@@ -81,11 +81,17 @@ namespace COVID19Alert.Controllers
             //try to add try and catch to every method
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             viewModel.RegisteredUser.IdentityUserId = userId;
-            var regUserDb = _context.RegisteredUsers.Include(r => r.HouseHold).FirstOrDefault(r => r.Id == id);
+            var regUserDb = _context.RegisteredUsers.Include(r => r.HouseHold).Include(r => r.HouseHold.Address).FirstOrDefault(r => r.Id == id);
             regUserDb.FirstName = viewModel.RegisteredUser.FirstName;
             regUserDb.LastName = viewModel.RegisteredUser.LastName;
             regUserDb.DOB = viewModel.RegisteredUser.DOB;
             regUserDb.PreferredStore = viewModel.RegisteredUser.PreferredStore;
+            regUserDb.DisplayPublicly = viewModel.RegisteredUser.DisplayPublicly;
+            regUserDb.HouseHold.Address.Street = viewModel.RegisteredUser.HouseHold.Address.Street;
+            regUserDb.HouseHold.Address.City = viewModel.RegisteredUser.HouseHold.Address.City;
+            regUserDb.HouseHold.Address.State = viewModel.RegisteredUser.HouseHold.Address.State;
+            regUserDb.HouseHold.Address.ZipCode = viewModel.RegisteredUser.HouseHold.Address.ZipCode;
+
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,9 +14,12 @@ namespace COVID19Alert.Models
         public int Id { get; set; }
         public string DoctorsName { get; set; }
         public string NursesName { get; set; }
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public Address Address { get; set; }
+        [ForeignKey("IdentityUser")]
+        public string IdentityUserId { get; set; }
+        public IdentityUser IdentityUser { get; set; }
     }
 }

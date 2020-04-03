@@ -15,6 +15,7 @@ namespace COVID19Alert.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DOB { get; set; }
+        public bool DisplayPublicly { get; set; }
         public string PreferredStore { get; set; }
         [ForeignKey("HouseHold")]
         public int HouseHoldId { get; set; }

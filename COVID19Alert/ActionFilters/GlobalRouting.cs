@@ -10,10 +10,10 @@ namespace COVID19Alert.ActionFilter
 {
     public class GlobalRouting : IActionFilter
     {
-        private readonly ClaimsPrincipal _claimsprincipal;
+        private readonly ClaimsPrincipal _claimsPrincipal;
         public GlobalRouting(ClaimsPrincipal claimsPrincipal)
         {
-            _claimsprincipal = claimsPrincipal;
+            _claimsPrincipal = claimsPrincipal;
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
@@ -21,9 +21,13 @@ namespace COVID19Alert.ActionFilter
             var controller = context.RouteData.Values["controller"];
             if (controller.Equals("Home"))
             {
-                if (_claimsprincipal.IsInRole("RegisteredUser"))
+                if (_claimsPrincipal.IsInRole("RegisteredUser"))
                 {
                     context.Result = new RedirectToActionResult("Index", "RegisteredUsers", null);
+                }
+                if (_claimsPrincipal.IsInRole("MedicalHotline"))
+                {
+                    context.Result = new RedirectToActionResult("Index", "MedicalHotline", null);
                 }
             }
         }
@@ -32,6 +36,5 @@ namespace COVID19Alert.ActionFilter
         {
 
         }
-
     }
 }

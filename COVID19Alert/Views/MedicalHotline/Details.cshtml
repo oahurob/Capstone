@@ -1,0 +1,78 @@
+﻿@model COVID19Alert.Models.MedicalHotlineViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1>Details</h1>
+
+    <div>
+        <h4>MedicalHotline</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicalHotline.DoctorsName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MedicalHotline.DoctorsName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicalHotline.NursesName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MedicalHotline.NursesName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicalHotline.PhoneNumber)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MedicalHotline.PhoneNumber)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.MedicalHotline.Address.City)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MedicalHotline.Address.City)
+            </dd>
+        </dl>
+    </div>
+
+    <h1>Location</h1>
+    <div id="map"></div>
+    <script>
+        var map;
+        var marker;
+        var addresses = [];
+        @*@foreach(var address in Model.MedicalHotlines) {
+            @:addresses.push("@address.Address.Street" + " " + "@address.Address.City" + " " + "@address.Address.State")
+            }*@
+
+        //for (var i = 0; i < addresses.length; i++) {
+        //    console.log(addresses[i]);
+        //}
+        function initMap() {
+            var options = {
+                zoom: 12,
+                center: { lat: 41.2426, lng: -82.6157}
+            }
+            map = new google.maps.Map(document.getElementById('map'), options);
+
+            addMarker({ coords: { lat: 41.29828, lng: -82.58224 } });
+
+            function addMarker(props) {
+                marker = new google.maps.Marker({ position: props.coords, map: map });
+
+                if (props.iconImage) {
+                    marker.setIcon(props.iconImage);
+                }
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFIDOmSU4pqgau7q4RLcHpF-hQFjbPxz4&callback=initMap"
+            async defer></script>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.MedicalHotline.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>

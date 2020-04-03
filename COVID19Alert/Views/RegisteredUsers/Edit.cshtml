@@ -35,6 +35,31 @@
                 <span asp-validation-for="RegisteredUser.PreferredStore" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="RegisteredUser.DisplayPublicly" class="control-label"></label>
+                <input asp-for="RegisteredUser.DisplayPublicly" class="form-control" />
+                <span asp-validation-for="RegisteredUser.DisplayPublicly" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredUser.HouseHold.Address.Street" class="control-label"></label>
+                <input asp-for="RegisteredUser.HouseHold.Address.Street" class="form-control" />
+                <span asp-validation-for="RegisteredUser.HouseHold.Address.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredUser.HouseHold.Address.City" class="control-label"></label>
+                <input asp-for="RegisteredUser.HouseHold.Address.City" class="form-control" />
+                <span asp-validation-for="RegisteredUser.HouseHold.Address.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredUser.HouseHold.Address.State" class="control-label"></label>
+                <input asp-for="RegisteredUser.HouseHold.Address.State" class="form-control" />
+                <span asp-validation-for="RegisteredUser.HouseHold.Address.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegisteredUser.HouseHold.Address.ZipCode" class="control-label"></label>
+                <input asp-for="RegisteredUser.HouseHold.Address.ZipCode" class="form-control" />
+                <span asp-validation-for="RegisteredUser.HouseHold.Address.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

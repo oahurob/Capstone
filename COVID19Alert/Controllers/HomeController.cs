@@ -28,7 +28,7 @@ namespace COVID19Alert.Controllers
             }
             if (User.IsInRole("RegisteredUser"))
             {
-                return RedirectToAction("Index", "RegisteredUsers");
+                return RedirectToAction("Index", "RegisteredUser");
             }
             return View();
         }

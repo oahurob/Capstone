@@ -4,14 +4,16 @@ using COVID19Alert.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace COVID19Alert.Data.Migrations
+namespace COVID19Alert.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200326195324_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,6 +110,9 @@ namespace COVID19Alert.Data.Migrations
                     b.Property<string>("DoctorsName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("NursesName")
                         .HasColumnType("nvarchar(max)");
 
@@ -117,6 +122,8 @@ namespace COVID19Alert.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("MedicalHotlines");
                 });
@@ -130,6 +137,9 @@ namespace COVID19Alert.Data.Migrations
 
                     b.Property<string>("DOB")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DisplayPublicly")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -184,22 +194,22 @@ namespace COVID19Alert.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e4ff803d-3bbe-4829-8901-153b9a86f77b",
-                            ConcurrencyStamp = "55427486-f645-45e7-a337-2e14c03866a7",
+                            Id = "e0fc8b20-0d3b-43a6-9239-254a061b0a0f",
+                            ConcurrencyStamp = "44f92848-b80c-46cf-8962-2cc4833d2406",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a19ee71e-4cd0-4b23-aa39-df9f94b6f9a7",
-                            ConcurrencyStamp = "b199485a-27f9-4264-84b1-424bb689c4c6",
+                            Id = "e898bd01-6bff-416a-a903-a4948d2d3af4",
+                            ConcurrencyStamp = "4f43a4d5-6f33-4ca9-a1da-6a38ddc43de0",
                             Name = "RegisteredUser",
-                            NormalizedName = "REGISTEREDNAME"
+                            NormalizedName = "REGISTEREDUSER"
                         },
                         new
                         {
-                            Id = "c388a919-a119-4a87-84b6-152142c26751",
-                            ConcurrencyStamp = "de6dc395-8393-4390-b50f-789f911b499a",
+                            Id = "bc7e8cbb-b7ab-4a7d-9073-26f5e8c57751",
+                            ConcurrencyStamp = "3bf58755-1071-4b0d-bc7b-3a3ea370bdd1",
                             Name = "MedicalHotline",
                             NormalizedName = "MEDICALHOTLINE"
                         });
@@ -396,6 +406,10 @@ namespace COVID19Alert.Data.Migrations
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("COVID19Alert.Models.RegisteredUser", b =>

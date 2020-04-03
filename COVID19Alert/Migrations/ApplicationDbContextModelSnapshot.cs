@@ -4,16 +4,14 @@ using COVID19Alert.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace COVID19Alert.Data.Migrations
+namespace COVID19Alert.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200319195039_AddMedicalHotlineInfoToDb")]
-    partial class AddMedicalHotlineInfoToDb
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,15 +108,20 @@ namespace COVID19Alert.Data.Migrations
                     b.Property<string>("DoctorsName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("NursesName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<double>("PhoneNumber")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("MedicalHotlines");
                 });
@@ -132,6 +135,9 @@ namespace COVID19Alert.Data.Migrations
 
                     b.Property<string>("DOB")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DisplayPublicly")
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -186,17 +192,24 @@ namespace COVID19Alert.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1dbb5e7a-45d3-40ec-87ea-d77c00e5dbc5",
-                            ConcurrencyStamp = "0db4f303-3c25-46c0-b51d-2751e8c76a23",
+                            Id = "e9dfa0b8-85da-4a12-9b99-fda672926fde",
+                            ConcurrencyStamp = "ebb0c4db-8719-4a6e-ab86-bfc998fdb661",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d86ca2ce-fa43-421d-b07e-d757c74807b2",
-                            ConcurrencyStamp = "b43363df-7e34-4e98-8c8d-93835dae939e",
+                            Id = "9d46d4fe-8625-410d-8ee1-94cd06f5c4f5",
+                            ConcurrencyStamp = "a1caf9fb-2c74-4e88-a7d6-93e81d967263",
                             Name = "RegisteredUser",
-                            NormalizedName = "REGISTEREDNAME"
+                            NormalizedName = "REGISTEREDUSER"
+                        },
+                        new
+                        {
+                            Id = "91b33f35-2990-4024-8cec-f6e3f67d6d92",
+                            ConcurrencyStamp = "b9177873-3a7f-478f-a454-a9ab6f7cd874",
+                            Name = "MedicalHotline",
+                            NormalizedName = "MEDICALHOTLINE"
                         });
                 });
 
@@ -391,6 +404,10 @@ namespace COVID19Alert.Data.Migrations
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("COVID19Alert.Models.RegisteredUser", b =>

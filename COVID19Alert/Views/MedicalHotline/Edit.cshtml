@@ -1,0 +1,65 @@
+﻿@model COVID19Alert.Models.MedicalHotlineViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>MedicalHotline</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MedicalHotline.Id" />
+            <div class="form-group">
+                <label asp-for="MedicalHotline.DoctorsName" class="control-label"></label>
+                <input asp-for="MedicalHotline.DoctorsName" class="form-control" />
+                <span asp-validation-for="MedicalHotline.DoctorsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.NursesName" class="control-label"></label>
+                <input asp-for="MedicalHotline.NursesName" class="form-control" />
+                <span asp-validation-for="MedicalHotline.NursesName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.PhoneNumber" class="control-label"></label>
+                <input asp-for="MedicalHotline.PhoneNumber" class="form-control" />
+                <span asp-validation-for="MedicalHotline.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.Address.Street" class="control-label"></label>
+                <input asp-for="MedicalHotline.Address.Street" class="form-control">
+                <span asp-validation-for="MedicalHotline.Address.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.Address.City" class="control-label"></label>
+                <input asp-for="MedicalHotline.Address.City" class="form-control">
+                <span asp-validation-for="MedicalHotline.Address.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.Address.State" class="control-label"></label>
+                <input asp-for="MedicalHotline.Address.State" class="form-control">
+                <span asp-validation-for="MedicalHotline.Address.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedicalHotline.Address.ZipCode" class="control-label"></label>
+                <input asp-for="MedicalHotline.Address.ZipCode" class="form-control">
+                <span asp-validation-for="MedicalHotline.Address.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

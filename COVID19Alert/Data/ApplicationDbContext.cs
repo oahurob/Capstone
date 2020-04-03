@@ -29,7 +29,7 @@ namespace COVID19Alert.Data
                 new IdentityRole
                 {
                     Name = "RegisteredUser",
-                    NormalizedName = "REGISTEREDNAME"
+                    NormalizedName = "REGISTEREDUSER"
                 },
                 new IdentityRole
                 {

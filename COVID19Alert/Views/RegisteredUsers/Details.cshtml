@@ -11,41 +11,47 @@
     <h4>RegisteredUser</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegisteredUser.FirstName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegisteredUser.FirstName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegisteredUser.LastName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegisteredUser.LastName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegisteredUser.DOB)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegisteredUser.DOB)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegisteredUser.PreferredStore)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegisteredUser.PreferredStore)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisteredUser.HouseHold)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegisteredUser.HouseHold.Address.Street)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegisteredUser.HouseHold.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegisteredUser.HouseHold.Address.Street)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisteredUser.IdentityUser)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegisteredUser.HouseHold.Address.City)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegisteredUser.IdentityUser.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegisteredUser.HouseHold.Address.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RegisteredUser.DisplayPublicly)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RegisteredUser.DisplayPublicly)
         </dd>
     </dl>
 </div>
